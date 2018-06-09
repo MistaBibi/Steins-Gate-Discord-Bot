@@ -21,12 +21,12 @@ bot.on('message', (message) => {
     // Commands
     cmd = messageParts[findCommandIndex(prefix + '([A-Za-z]+)', messageParts)]
 
-    emoticonNames = ['moeka_phone', 'daru_cry', 'kurisu_frown', 'o_kabe', "tuturu", "faris_nyan", "ruka_bow", "suzuha_sigh", "ruka_mop"];
+    emoticonNames = ['moeka_phone', 'daru_cry', 'kurisu_frown', 'o_kabe', "tuturu", "faris_nyan", "luka_bow", "suzuha_sigh", "luka_mop"];
 
     for(var index in emoticonNames) {
         if(cmd == `${prefix}${emoticonNames[index]}:`) {
             message.channel.send("", {
-                file: `emoticons/${emoticonNames[index]}.png`
+                file: `emojis/${emoticonNames[index]}.png`
             })
         }
     }
