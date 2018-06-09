@@ -1,11 +1,40 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-const auth = require('./auth.json');
+const config = require('./config.json');
+
+bot.login(config.token);
+
+bot.on('ready', () => {
+    // bot.user.setUsername('Emoji Microwave (Temporary Name)')
+    bot.user.setPresence({ game: { name: 'with worldlines' }, status: 'online' })
+});
 
 bot.on('message', (message) => {
-    if(message.content == 'Henlo') {
-        message.reply('Henlo');
+    let prefix = config.emojiPrefix;
+    let messageParts = message.content.split(" ");
+
+    // String literal matches
+    if(message.content.toLowerCase() == 'is kyle a soy boi?') {
+        message.channel.send('Yes, it is known.');
+    }
+
+    // Commands
+    cmd = messageParts[findCommandIndex(prefix + '([A-Za-z]+)', messageParts)]
+
+    emoticonNames = ['moeka_phone', 'daru_cry', 'kurisu_frown', 'o_kabe', "tuturu", "faris_nyan", "ruka_bow", "suzuha_sigh", "ruka_mop"];
+
+    for(var index in emoticonNames) {
+        if(cmd == `${prefix}${emoticonNames[index]}:`) {
+            message.channel.send("", {
+                file: `emoticons/${emoticonNames[index]}.png`
+            })
+        }
     }
 });
 
-bot.login(auth.token);
+function findCommandIndex (str, array) {
+    for (var j=0; j<array.length; j++) {
+        if (array[j].match(str)) return j;
+    }
+    return -1;
+}
