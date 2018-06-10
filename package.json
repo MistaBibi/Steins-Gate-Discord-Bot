@@ -1,21 +1,21 @@
 {
-  "name": "discord-bot",
+  "name": "steins-gate-discord-bot",
   "version": "1.0.0",
   "description": "",
-  "main": "LihoniBot.js",
+  "main": "SGBot.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MistaBibi/Discord-Bot.git"
+    "url": "git+https://github.com/MistaBibi/Steins-Gate-Discord-Bot.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MistaBibi/Discord-Bot/issues"
+    "url": "https://github.com/MistaBibi/Steins-Gate-DiscordBot/issues"
   },
-  "homepage": "https://github.com/MistaBibi/Discord-Bot#readme",
+  "homepage": "https://github.com/MistaBibi/Steins-Gate-Discord-Bot#readme",
   "dependencies": {
     "discord.js": "^11.3.2"
   }

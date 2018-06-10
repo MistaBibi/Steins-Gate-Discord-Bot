@@ -6,25 +6,34 @@ bot.login(config.token);
 
 bot.on('ready', () => {
     // bot.user.setUsername('Emoji Microwave (Temporary Name)')
+    console.log("Awaiting D-mails!");
     bot.user.setPresence({ game: { name: 'with worldlines' }, status: 'online' })
 });
 
 bot.on('message', (message) => {
-    let prefix = config.emojiPrefix;
+    let emojiPrefix = config.emojiPrefix;
+    let standardPrefix = config.standardPrefix;
     let messageParts = message.content.split(" ");
 
     // String literal matches
-    if(message.content.toLowerCase() == 'is kyle a soy boi?') {
-        message.channel.send('Yes, it is known.');
+    if(message.content.toLowerCase() == 'nullpo') {
+        message.channel.send('Gah!');
+    }
+
+    if(message.content.toLowerCase() == `${standardPrefix}help`) {
+        message.channel.send('');
     }
 
     // Commands
-    cmd = messageParts[findCommandIndex(prefix + '([A-Za-z]+)', messageParts)]
+    cmd = messageParts[findCommandIndex(emojiPrefix + '([A-Za-z]+)', messageParts)]
 
-    emoticonNames = ['moeka_phone', 'daru_cry', 'kurisu_frown', 'o_kabe', "tuturu", "faris_nyan", "luka_bow", "suzuha_sigh", "luka_mop"];
+    emoticonNames = ['moeka_phone', 'daru_cry', 'kurisu_frown', 'o_kabe', "tuturu",
+     "faris_nyan", "luka_bow", "suzuha_sigh", "luka_mop", "kurisu_channeler",
+     "moeka_sad", "amadeus_kurisu", "maho_bath", "daru_orz", "maho_dazed",
+     "oopa_happy", "okabe_break"];
 
     for(var index in emoticonNames) {
-        if(cmd == `${prefix}${emoticonNames[index]}:`) {
+        if(cmd == `${emojiPrefix}${emoticonNames[index]}:`) {
             message.channel.send("", {
                 file: `emojis/${emoticonNames[index]}.png`
             })
@@ -33,7 +42,7 @@ bot.on('message', (message) => {
 });
 
 function findCommandIndex (str, array) {
-    for (var j=0; j<array.length; j++) {
+    for (var j in array) {
         if (array[j].match(str)) return j;
     }
     return -1;
