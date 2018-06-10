@@ -1,9 +1,10 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-const config = require('../config');
-const credentials = require('../credentials')
+const config = require('./config.json');
+const credentials = require('./credentials.json')
+const utils = require('./utils.js');
 
-bot.login(config.token);
+bot.login(credentials.token);
 
 bot.on('ready', () => {
     // bot.user.setUsername('Emoji Microwave (Temporary Name)')
@@ -12,39 +13,48 @@ bot.on('ready', () => {
 });
 
 bot.on('message', (message) => {
-    let emojiPrefix = config.emojiPrefix;
-    let standardPrefix = config.standardPrefix;
-    let messageParts = message.content.split(" ");
 
     // String literal matches
-    if(message.content.toLowerCase() == 'nullpo') {
+    if(message.content.trim().toLowerCase() == 'nullpo') {
         message.channel.send('Gah!');
     }
 
-    if(message.content.toLowerCase() == `${standardPrefix}help`) {
-        message.channel.send('');
+    // Commands
+    if(message.content.trim().startsWith(config.commandPrefix)) {
+        command = utils.parseCommand(message.content);
+        switch (command.toLowerCase()) {
+            case undefined:
+            case 'help':
+                helpCommand(message);
+        }
     }
 
-    // Commands
-    cmd = messageParts[findCommandIndex(emojiPrefix + '([A-Za-z]+)', messageParts)]
-
-    emoticonNames = ['moeka_phone', 'daru_cry', 'kurisu_frown', 'o_kabe', "tuturu",
-     "faris_nyan", "luka_bow", "suzuha_sigh", "luka_mop", "kurisu_channeler",
-     "moeka_sad", "amadeus_kurisu", "maho_bath", "daru_orz", "maho_dazed",
-     "oopa_happy", "okabe_break"];
-
-    for(var index in emoticonNames) {
-        if(cmd == `${emojiPrefix}${emoticonNames[index]}:`) {
-            message.channel.send("", {
-                file: `emojis/${emoticonNames[index]}.png`
-            })
-        }
+    // Emojis
+    if(message.content.trim().includes(":")) {
+        emojiCommand(message);
     }
 });
 
-function findCommandIndex (str, array) {
-    for (var j in array) {
-        if (array[j].match(str)) return j;
+function helpCommand (message) {
+    const emojiEntries = Object.entries(config.emojis).map(([emoji, entry]) => `${config.emojiPrefix}${emoji}\n\t- ${entry.description}`);
+    const commandEntries = Object.entries(config.commands).map(([command, entry]) => `${config.commandPrefix}${command} ${entry.usage}\n\t- ${entry.description}`);
+
+    const helpText =
+    `I-It's not like I want you to know how I work or anything, **b-b-baka**!\n_Emojis:_\n${emojiEntries.join('\n')}\n_Commands:_\n${commandEntries.join('\n')}`
+
+    message.channel.send(helpText);
+}
+
+function emojiCommand (message) {
+    let emojiPrefix = config.emojiPrefix;
+    let messageParts = message.content.split(" ");
+    emoji = utils.findEmojiLocation(`${emojiPrefix}([^\s]*)`, messageParts)
+
+    for(let emojiEntry of Object.entries(config.emojis)) {
+        if(emoji.match(`${emojiPrefix}${emojiEntry[0]}([^\s]*)`)) {
+            message.channel.send("", {
+                file: `${emojiEntry[1].filePath}`
+            })
+        }
     }
-    return -1;
 }

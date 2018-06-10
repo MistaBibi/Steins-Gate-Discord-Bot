@@ -1,0 +1,80 @@
+{
+    "emojiPrefix": ":",
+    "emojis": {
+        "amadeus_kurisu": {
+            "filePath": "emojis/amadeus_kurisu.png",
+            "description": "A-mah-day-us"
+        },
+        "daru_cry": {
+            "filePath": "emojis/daru_cry.png",
+            "description": "Daru sad"
+        },
+        "daru_orz": {
+            "filePath": "emojis/daru_orz.png",
+            "description": "Daru orz"
+        },
+        "faris_nyan": {
+            "filePath": "emojis/faris_nyan.png",
+            "description": "Faris nya nya"
+        },
+        "kurisu_frown": {
+            "filePath": "emojis/kurisu_frown.png",
+            "description": "Kurisutinaaaaaaa!"
+        },
+        "kurisu_channeler": {
+            "filePath": "emojis/kurisu_channeler.png",
+            "description": "Celeb 17"
+        },
+        "luka_bow": {
+            "filePath": "emojis/luka_bow.png",
+            "description": "Very lady-like but daga otoko da"
+        },
+        "luka_mop": {
+            "filePath": "emojis/luka_mop.png",
+            "description": "Daga otoko da"
+        },
+        "maho_bath": {
+            "filePath": "emojis/maho_bath.png",
+            "description": "No officer I swear she's legal"
+        },
+        "maho_dazed": {
+            "filePath": "emojis/maho_dazed.png",
+            "description": "So tired..."
+        },
+        "moeka_phone": {
+            "filePath": "emojis/moeka_phone.png",
+            "description": "I think she's trying to communicate"
+        },
+        "moeka_sad": {
+            "filePath": "emojis/moeka_sad.png",
+            "description": "When does she not look depressed?"
+        },
+        "o_kabe": {
+            "filePath": "emojis/o_kabe.png",
+            "description": "This is the choice of Steins;Gate!"
+        },
+        "okabe_break": {
+            "filePath": "emojis/okabe_break.png",
+            "description": "Some coffee before the next leap"
+        },
+        "oopa_happy": {
+            "filePath": "emojis/oopa_happy.png",
+            "description": "Metal oopa!"
+        },
+        "suzuha_sigh": {
+            "filePath": "emojis/suzuha_sigh.png",
+            "description": "My dad is such a perv"
+        },
+        "tuturu": {
+            "filePath": "emojis/tuturu.png",
+            "description": "**Tuturuu motherfucker**"
+        }
+    },
+    "commandPrefix": "~",
+    "commands": {
+        "help": {
+            "usage": "",
+            "description": "How did you even get here if you don't know what this is?"
+        }
+    }
+}
