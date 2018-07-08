@@ -54,6 +54,24 @@ bot.on('message', async (message) => {
     }
 });
 
+bot.on('voiceStateUpdate', async (oldMember, newMember) => {
+    // No-op if user is a bot
+    if(newMember.user.bot || oldMember.user.bot) return;
+
+    const newMemberVoiceChannel = newMember.voiceChannel;
+    const oldMemberVoiceChannel = oldMember.voiceChannel;
+
+    if(newMemberVoiceChannel) { // User has entered a voice channel
+        try {
+            if(newMember.roles.find('name', 'Weeb')) utils.playAudioFile(newMemberVoiceChannel, 'tuturu');
+        } catch(err) {
+            console.error(err.stack);
+        }
+    } else if(oldMemberVoiceChannel) { // User has left a voice channel
+        // TODO something to do when a user leaves
+    }
+});
+
 function helpCommand (message) {
     const emojiEntries = Object.entries(config.emojis)
         .map(([emoji, entry]) => `${config.emojiPrefix}${emoji}\n\t- ${entry.description}`);
@@ -81,12 +99,12 @@ function emojiCommand (message) {
     const emojiPrefix = config.emojiPrefix;
 
     let match;
-    if(match = message.content.match(`${emojiPrefix}([^\\s]*)`)) {
+    if((match = message.content.match(`${emojiPrefix}([^\\s]*)`))) {
         const [, emoji] = match;
         if(config.emojis.hasOwnProperty(emoji)) {
             return message.channel.send('', {
                 file: `${config.emojis[emoji].filePath}`
-           });
+            });
         } else if(emoji in config.emojis) {
             return message.channel.send('Gah!');
         }
