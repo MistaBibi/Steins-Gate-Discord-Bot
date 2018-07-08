@@ -77,9 +77,19 @@
             "description": "How did you even get here if you don't know what this is?"
         },
         "tuturu": {
-            "usage": "",
+            "usage": "for when you need to greet someone",
             "filePath":"/home/ubuntu/sound_bites/tuturu.mp3",
             "description": "Tuturu!"
+        },
+        "beechga": {
+            "usage": "for when someone discovers your secret lair",
+            "filePath":"/home/ubuntu/sound_bites/beechga.mp3",
+            "description": "Beeeeeeeeechga!"
+        },
+        "sonuvabetch": {
+            "usage": "for when you need to impress someone",
+            "filePath":"/home/ubuntu/sound_bites/sonuvabetch.mp3",
+            "description": "I am mad scientist. Is so cool! Sonuvabetch."
         }
     }
 }

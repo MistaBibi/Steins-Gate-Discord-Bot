@@ -31,7 +31,13 @@ bot.on('message', (message) => {
                 helpCommand(message);
                 break;
             case 'tuturu':
-                tuturuCommand(message);
+                playCommand(message, command);
+                break;
+            case 'beechga':
+                playCommand(message, command);
+                break;
+            case 'sonuvabetch':
+                playCommand(message, command);
                 break;
         }
     }
@@ -55,18 +61,11 @@ ${commandEntries.join('\n')}`;
     message.channel.send(helpText);
 }
 
-function tuturuCommand (message) {
+function playCommand (message, commandName) {
     const targetChannel = message.member.voiceChannel;
-    if(!targetChannel) message.channel.send('Tuturu!');
+    if(!targetChannel) message.channel.send(config.commands[commandName].description);
     else {
-        targetChannel.join().then(connection => {
-            console.log('Tuturu!')
-            const dispatcher = connection.playFile(config.commands['tuturu'].filePath);
-            dispatcher.on("end", end => {
-                targetChannel.leave();
-                console.log('Tuturu done!');
-            });
-        }).catch(console.error);
+        utils.playAudioFile(targetChannel, commandName)
     }
 }
 
