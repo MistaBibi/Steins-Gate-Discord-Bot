@@ -83,10 +83,12 @@ function emojiCommand (message) {
     let match;
     if(match = message.content.match(`${emojiPrefix}([^\\s]*)`)) {
         const [, emoji] = match;
-        if(config.emojis[emoji]) {
-            message.channel.send('', {
+        if(config.emojis.hasOwnProperty(emoji)) {
+            return message.channel.send('', {
                 file: `${config.emojis[emoji].filePath}`
-            });
+           });
+        } else if(emoji in config.emojis) {
+            return message.channel.send('Gah!');
         }
     }
 }
