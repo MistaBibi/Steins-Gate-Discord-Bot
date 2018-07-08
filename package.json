@@ -2,10 +2,11 @@
   "name": "steins-gate-discord-bot",
   "version": "1.0.0",
   "description": "",
-  "main": "SGBot.js",
+  "main": "js/SGBot.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node js/SGBot.js"
+    "start": "node .",
+    "watch": "nodemon ."
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,11 @@
   "homepage": "https://github.com/MistaBibi/Steins-Gate-Discord-Bot#readme",
   "dependencies": {
     "discord.js": "^11.3.2",
-    "opusscript": "0.0.6"
+    "opusscript": "^0.0.6"
+  },
+  "devDependencies": {
+    "eslint": "^5.0.1",
+    "nodemon": "^1.17.5",
+    "semistandard": "^12.0.1"
   }
 }
