@@ -1,0 +1,20 @@
+{
+  "extends": "semistandard",
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "script"
+  },
+  "rules": {
+    "indent": ["error", 4, { "SwitchCase": 1 }],
+    "keyword-spacing": ["error", {
+      "overrides": {
+        "catch": { "after": false },
+        "for": { "after": false },
+        "if": { "after": false },
+        "switch": { "after": false },
+        "while": { "after": false }
+      }
+    }],
+    "no-cond-assign": ["warn", "except-parens"]
+  }
+}

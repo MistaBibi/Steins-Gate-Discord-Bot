@@ -26,7 +26,7 @@ bot.on('message', (message) => {
     // Commands
     if(message.content.startsWith(config.commandPrefix)) {
         const command = utils.parseCommand(message.content);
-        switch (command.toLowerCase()) {
+        switch(command.toLowerCase()) {
             case 'help':
                 helpCommand(message);
                 break;
@@ -71,14 +71,14 @@ function playCommand (message, commandName) {
 
 function emojiCommand (message) {
     const emojiPrefix = config.emojiPrefix;
-    
+
     let match;
     if(match = message.content.match(`${emojiPrefix}([^\\s]*)`)) {
         const [, emoji] = match;
         if(config.emojis[emoji]) {
             message.channel.send('', {
                 file: `${config.emojis[emoji].filePath}`
-           });
+            });
         }
     }
 }
