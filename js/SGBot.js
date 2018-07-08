@@ -1,9 +1,9 @@
 'use strict';
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-const config = require('./config.json');
-const credentials = require('./credentials.json');
-const utils = require('./utils.js');
+const config = require('../config.json');
+const credentials = require('../credentials.json');
+const utils = require('../js/utils.js');
 
 bot.login(credentials.token);
 
@@ -15,6 +15,9 @@ bot.on('ready', () => {
 
 bot.on('message', (message) => {
 
+    // No-op if message was from a bot
+    if(message.author.bot) return;
+
     // String literal matches
     if(message.content.toLowerCase() === 'nullpo') {
         message.channel.send('Gah!');
@@ -24,9 +27,12 @@ bot.on('message', (message) => {
     if(message.content.startsWith(config.commandPrefix)) {
         const command = utils.parseCommand(message.content);
         switch (command.toLowerCase()) {
-            case undefined:
             case 'help':
                 helpCommand(message);
+                break;
+            case 'tuturu':
+                tuturuCommand(message);
+                break;
         }
     }
 
@@ -47,6 +53,21 @@ _Commands:_
 ${commandEntries.join('\n')}`;
 
     message.channel.send(helpText);
+}
+
+function tuturuCommand (message) {
+    const targetChannel = message.member.voiceChannel;
+    if(!targetChannel) message.channel.send('Tuturu!');
+    else {
+        targetChannel.join().then(connection => {
+            console.log('Tuturu!')
+            const dispatcher = connection.playFile(config.commands['tuturu'].filePath);
+            dispatcher.on("end", end => {
+                targetChannel.leave();
+                console.log('Tuturu done!');
+            });
+        }).catch(console.error);
+    }
 }
 
 function emojiCommand (message) {

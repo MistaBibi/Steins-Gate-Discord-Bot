@@ -7,15 +7,15 @@
         },
         "daru_cry": {
             "filePath": "emojis/daru_cry.png",
-            "description": "Daru sad"
+            "description": "Please humiliate me some more"
         },
         "daru_orz": {
             "filePath": "emojis/daru_orz.png",
-            "description": "Daru orz"
+            "description": "ORZ"
         },
         "faris_nyan": {
             "filePath": "emojis/faris_nyan.png",
-            "description": "Faris nya nya"
+            "description": "Faris nyan nyan"
         },
         "kurisu_frown": {
             "filePath": "emojis/kurisu_frown.png",
@@ -75,6 +75,11 @@
         "help": {
             "usage": "",
             "description": "How did you even get here if you don't know what this is?"
+        },
+        "tuturu": {
+            "usage": "",
+            "filePath":"/home/ubuntu/sound_bites/tuturu.mp3",
+            "description": "Tuturu!"
         }
     }
 }
