@@ -5,9 +5,9 @@ exports.parseCommand = function (messageContent) {
 }
 
 exports.playAudioFile = async function (targetChannel, commandName) {
-    const connection = await targetChannel.join();
+    const connection = targetChannel.connection || await targetChannel.join();
     const dispatcher = connection.playFile(config.commands[commandName].filePath);
-    dispatcher.on('end', end => {
-        targetChannel.leave();
+    dispatcher.on('end', () => {
+        if (!connection.dispatcher) connection.disconnect();
     });
 }
