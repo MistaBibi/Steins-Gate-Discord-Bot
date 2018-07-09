@@ -61,7 +61,7 @@ bot.on('voiceStateUpdate', async (oldMember, newMember) => {
     const newMemberVoiceChannel = newMember.voiceChannel;
     const oldMemberVoiceChannel = oldMember.voiceChannel;
 
-    if(newMemberVoiceChannel) { // User has entered a voice channel
+    if(newMember.voiceChannelID && newMember.voiceChannelID !== oldMember.voiceChannelID) { // User has entered a voice channel
         try {
             if(newMember.roles.find('name', 'Weeb')) utils.playAudioFile(newMemberVoiceChannel, 'tuturu');
         } catch(err) {
