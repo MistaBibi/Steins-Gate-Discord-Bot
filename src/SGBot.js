@@ -1,6 +1,7 @@
 'use strict';
 const Discord = require('discord.js');
 const utils = require('./utils.js');
+const commands = require('./commands.js');
 const config = require('../config.json');
 const credentials = require('../credentials.json');
 
@@ -35,19 +36,22 @@ bot.on('message', async (message) => {
             const command = utils.parseCommand(message.content);
             switch(command.toLowerCase()) {
                 case 'help':
-                    await helpCommand(message);
+                    await commands.helpCommand(message);
+                    break;
+                case 'greetme':
+                    await commands.greetMeCommand(message);
                     break;
                 case 'tuturu':
                 case 'beechga':
                 case 'sonuvabetch':
-                    await playCommand(message, command);
+                    await commands.playCommand(message, command);
                     break;
             }
         }
 
         // Emojis
         if(message.content.includes(':')) {
-            await emojiCommand(message);
+            await commands.emojiCommand(message);
         }
     } catch(err) {
         console.error(err.stack);
@@ -63,7 +67,7 @@ bot.on('voiceStateUpdate', async (oldMember, newMember) => {
 
     if(newMember.voiceChannelID && newMember.voiceChannelID !== oldMember.voiceChannelID) { // User has entered a voice channel
         try {
-            if(newMember.roles.find('name', 'Weeb')) utils.playAudioFile(newMemberVoiceChannel, 'tuturu');
+            if(newMember.roles.find('name', 'tuturu') && newMember.voiceChannel.name === 'Anime Watching Team') utils.playAudioFile(newMemberVoiceChannel, 'tuturu');
         } catch(err) {
             console.error(err.stack);
         }
@@ -71,42 +75,3 @@ bot.on('voiceStateUpdate', async (oldMember, newMember) => {
         // TODO something to do when a user leaves
     }
 });
-
-function helpCommand (message) {
-    const emojiEntries = Object.entries(config.emojis)
-        .map(([emoji, entry]) => `${config.emojiPrefix}${emoji}\n\t- ${entry.description}`);
-    const commandEntries = Object.entries(config.commands)
-        .map(([command, entry]) => `${config.commandPrefix}${command} ${entry.usage}\n\t- ${entry.description}`);
-
-    const helpText =
-`I-It's not like I want you to know how I work or anything, **b-b-baka**!
-_Emojis:_
-${emojiEntries.join('\n')}
-_Commands:_
-${commandEntries.join('\n')}`;
-
-    return message.channel.send(helpText);
-}
-
-function playCommand (message, commandName) {
-    const { voiceChannel } = message.member;
-    return voiceChannel
-        ? utils.playAudioFile(voiceChannel, commandName)
-        : message.channel.send(config.commands[commandName].description);
-}
-
-function emojiCommand (message) {
-    const emojiPrefix = config.emojiPrefix;
-
-    let match;
-    if((match = message.content.match(`${emojiPrefix}([^\\s]*)`))) {
-        const [, emoji] = match;
-        if(config.emojis.hasOwnProperty(emoji)) {
-            return message.channel.send('', {
-                file: `${config.emojis[emoji].filePath}`
-            });
-        } else if(emoji in config.emojis) {
-            return message.channel.send('Gah!');
-        }
-    }
-}

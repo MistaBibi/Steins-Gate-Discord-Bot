@@ -73,23 +73,37 @@
     "commandPrefix": "~",
     "commands": {
         "help": {
-            "usage": "",
-            "description": "How did you even get here if you don't know what this is?"
+            "usage": "to see this list, baka",
+            "description": ""
+        },
+        "greetme": {
+            "usage": "if you want me to greet you when entering 'Anime Watching Team'",
+            "description": "Plays a Tuturu! whenever you enter 'Anime Watching Team'",
+            "role": {
+                "name": "tuturu",
+                "color": [148, 174, 192],
+                "permissions": []
+            },
+            "emojiID": "466107601965547520",
+            "confirmResponse": "Yeah I'll greet you...for a Dk. Pepper!",
+            "successResponse": "It's a pinky promise!",
+            "tooSlowResponse": "Too slow!",
+            "alreadyHasRoleResponse": "Don't I already greet you?"
         },
         "tuturu": {
             "usage": "for when you need to greet someone",
-            "filePath": "sound_bites/tuturu.mp3",
-            "description": "Tuturu!"
+            "description": "Tuturu!",
+            "filePath": "sound_bites/tuturu.mp3"
         },
         "beechga": {
             "usage": "for when someone discovers your secret lair",
-            "filePath": "sound_bites/beechga.mp3",
-            "description": "Beeeeeeeeechga!"
+            "description": "Beeeeeeeeechga!",
+            "filePath": "sound_bites/beechga.mp3"
         },
         "sonuvabetch": {
             "usage": "for when you need to impress someone",
-            "filePath": "sound_bites/sonuvabetch.mp3",
-            "description": "I am mad scientist. Is so cool! Sonuvabetch."
+            "description": "I am mad scientist. Is so cool! Sonuvabetch.",
+            "filePath": "sound_bites/sonuvabetch.mp3"
         }
     }
 }
