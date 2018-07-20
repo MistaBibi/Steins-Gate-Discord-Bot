@@ -12,11 +12,3 @@ exports.playAudioFile = async function (targetChannel, commandName) {
         if(!connection.dispatcher) connection.disconnect();
     });
 };
-
-exports.createRole = async function (guild, role) {
-    try {
-        guild.createRole(role);
-    } catch(err) {
-        console.log(err);
-    }
-};

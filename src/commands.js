@@ -28,30 +28,28 @@ exports.greetMeCommand = async function (message) {
     const greetMeCommandObject = config.commands.greetme;
 
     if(!message.guild.roles.find('name', greetMeCommandObject.role.name)) { // If the role does not exist already
-        utils.createRole(message.guild, greetMeCommandObject.role).then(() => { // create the role
-            console.log(`Successfully created role ${greetMeCommandObject.role.name}`);
-        });
+        try {
+            await message.guild.createRole(greetMeCommandObject.role);
+        } catch(err) {
+            console.log(err.stack);
+        }
     }
     if(message.member.roles.find('name', greetMeCommandObject.role.name)) {
         message.reply(greetMeCommandObject.alreadyHasRoleResponse);
     } else {
         const dkPepperEmoji = message.guild.emojis.get(greetMeCommandObject.emojiID); // Get the dkPepper emoji
         try {
-            let dkPepperMsg = await message.reply(greetMeCommandObject.confirmResponse);
+            const dkPepperMsg = await message.reply(greetMeCommandObject.confirmResponse);
             await dkPepperMsg.react(dkPepperEmoji);
             const reactions = await dkPepperMsg.awaitReactions(reaction => reaction.emoji === dkPepperEmoji, {max: 2, time: 1.048596 * 10000});
             if(reactions.get(dkPepperEmoji.id).count === 2) {
-                message.member.addRole(message.guild.roles.find('name', greetMeCommandObject.role.name)).then(() => {
-                    console.log(`I will now greet ${message.author.username}.`);
-                });
+                await message.member.addRole(message.guild.roles.find('name', greetMeCommandObject.role.name));
                 message.reply(greetMeCommandObject.successResponse);
             } else {
-                message.reply(greetMeCommandObject.tooSlowResponse).then(() => {
-                    console.log(`${message.author.username} was too slow.`);
-                });
+                message.reply(greetMeCommandObject.tooSlowResponse);
             }
         } catch(err) {
-            console.log(err);
+            console.err(err.stack);
         }
     }
 };
