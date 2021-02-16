@@ -15,7 +15,7 @@ bot.on('ready', async () => {
     try {
         // await bot.user.setUsername('Emoji Microwave (Temporary Name)')
         await bot.user.setPresence({ game: { name: 'with worldlines' }, status: 'online' });
-    } catch(err) {
+    } catch (err) {
         console.error(err.stack);
     }
     console.log('Awaiting D-mails!');
@@ -23,18 +23,18 @@ bot.on('ready', async () => {
 
 bot.on('message', async (message) => {
     // No-op if message was from a bot
-    if(message.author.bot) return;
+    if (message.author.bot) return;
 
     try {
         // String literal matches
-        if(message.content.toLowerCase() === 'nullpo') {
+        if (message.content.toLowerCase() === 'nullpo') {
             await message.channel.send('Gah!');
         }
 
         // Commands
-        if(message.content.startsWith(config.commandPrefix)) {
+        if (message.content.startsWith(config.commandPrefix)) {
             const command = utils.parseCommand(message.content);
-            switch(command.toLowerCase()) {
+            switch (command.toLowerCase()) {
                 case 'help':
                     await commands.helpCommand(message);
                     break;
@@ -50,28 +50,28 @@ bot.on('message', async (message) => {
         }
 
         // Emojis
-        if(message.content.includes(':')) {
+        if (message.content.includes(':')) {
             await commands.emojiCommand(message);
         }
-    } catch(err) {
+    } catch (err) {
         console.error(err.stack);
     }
 });
 
 bot.on('voiceStateUpdate', async (oldMember, newMember) => {
     // No-op if user is a bot
-    if(newMember.user.bot || oldMember.user.bot) return;
+    if (newMember.member.user.bot || oldMember.member.user.bot) return;
 
-    const newMemberVoiceChannel = newMember.voiceChannel;
-    const oldMemberVoiceChannel = oldMember.voiceChannel;
+    const newMemberVoiceChannel = newMember.channel;
+    const oldMemberVoiceChannel = oldMember.channel;
 
-    if(newMember.voiceChannelID && newMember.voiceChannelID !== oldMember.voiceChannelID) { // User has entered a voice channel
+    if (newMember.channelID && newMember.channelID !== oldMember.channelID) { // User has entered a voice channel
         try {
-            if(newMember.roles.find('name', 'tuturu') && newMember.voiceChannel.name === 'Anime Watching Team') utils.playAudioFile(newMemberVoiceChannel, 'tuturu');
-        } catch(err) {
+            if (newMember.member.roles.cache.find(guild => guild.name === 'tuturu') && newMemberVoiceChannel.name === 'Anime Watching Team') utils.playAudioFile(newMemberVoiceChannel, 'tuturu');
+        } catch (err) {
             console.error(err.stack);
         }
-    } else if(oldMemberVoiceChannel) { // User has left a voice channel
+    } else if (oldMemberVoiceChannel) { // User has left a voice channel
         // TODO something to do when a user leaves
     }
 });
