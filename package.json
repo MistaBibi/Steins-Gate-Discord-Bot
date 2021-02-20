@@ -19,12 +19,12 @@
   },
   "homepage": "https://github.com/MistaBibi/Steins-Gate-Discord-Bot#readme",
   "dependencies": {
-    "bufferutil": "^4.0.3",
     "discord.js": "^12.5.1",
-    "erlpack": "github:discordapp/erlpack",
     "@discordjs/opus": "^0.4.0"
   },
   "optionalDependencies": {
+    "bufferutil": "^4.0.3",
+    "erlpack": "github:discordapp/erlpack#e27db8f82892bdb9b28a0547cc394d68b5d2242d",
     "sodium": "^3.0.2"
   },
   "devDependencies": {
