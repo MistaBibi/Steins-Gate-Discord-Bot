@@ -5,12 +5,18 @@
     "main": "lib/SGBot.js",
     "scripts": {
         "build": "tsc",
-        "prepack": "tsc",
+        "dev": "nodemon .",
         "fmt": "eslint . --fix && prettier . --write",
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "prepack": "tsc",
         "start": "node .",
-        "watch": "nodemon ."
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
+    "files": [
+        "emojis/",
+        "lib/",
+        "sound_bites/",
+        "config.json"
+    ],
     "repository": {
         "type": "git",
         "url": "git+https://github.com/MistaBibi/Steins-Gate-Discord-Bot.git"
