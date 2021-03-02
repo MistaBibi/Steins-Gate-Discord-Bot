@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+    bot:
+        image: steins-gate-discord-bot
+        build:
+            context: .
+        volumes:
+            - ./emojis:/home/node/package/emojis
+            - ./lib:/home/node/package/lib
+            - ./sound_bites:/home/node/package/sound_bites
+            - ./config.json:/home/node/package/config.json
+            - ./credentials.json:/home/node/package/credentials.json
