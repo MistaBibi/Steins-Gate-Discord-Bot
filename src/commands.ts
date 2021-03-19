@@ -1,7 +1,9 @@
-import * as utils from './utils';
-import * as config from '../config.json';
 import type { Message } from 'discord.js';
+
+import * as config from '../config.json';
+
 import type { BotCommand, BotSoundCommand } from './types';
+import * as utils from './utils';
 
 export async function helpCommand(message: Message, command: BotCommand): Promise<void> {
     const emojiEntries = Object.entries(config.emojis).map(

@@ -1,10 +1,14 @@
-import * as Discord from 'discord.js';
-import * as utils from './utils';
-import * as commands from './commands';
-import * as config from '../config.json';
-import { SoundCommandKey } from './types';
 import { once } from 'events';
 
+import * as Discord from 'discord.js';
+
+import * as config from '../config.json';
+
+import * as commands from './commands';
+import { SoundCommandKey } from './types';
+import * as utils from './utils';
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const credentials: { token: string } = require('../credentials.json');
 
 async function main(): Promise<void> {
@@ -47,7 +51,7 @@ async function main(): Promise<void> {
 
     bot.on('voiceStateUpdate', (oldMember, newMember) => {
         // No-op if user is a bot
-        if (newMember.member?.user.bot || oldMember.member?.user.bot) return;
+        if (newMember.member?.user.bot ?? oldMember.member?.user.bot) return;
 
         const newMemberVoiceChannel = newMember.channel;
         const oldMemberVoiceChannel = oldMember.channel;

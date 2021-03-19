@@ -7,7 +7,8 @@ This bot displays larger "emojis" as message attachments when an emoji command i
 Type ~help for a list of commands and emojis.
 
 Required local dependencies:
-- Windows build tools: https://github.com/felixrieseberg/windows-build-tools (to compile native dependencies)
-- ffmpeg: https://ffmpeg.org/download.html
+
+-   Windows build tools: https://github.com/felixrieseberg/windows-build-tools (to compile native dependencies)
+-   ffmpeg: https://ffmpeg.org/download.html
 
 El Psy Kongroo.

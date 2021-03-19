@@ -1,7 +1,9 @@
-import * as config from '../config.json';
-import * as path from 'path';
-import type { VoiceChannel } from 'discord.js';
 import { once } from 'events';
+import * as path from 'path';
+
+import type { VoiceChannel } from 'discord.js';
+
+import * as config from '../config.json';
 
 export function parseCommand(messageContent: string): string {
     return messageContent.trim().slice(config.commandPrefix.length);
