@@ -79,16 +79,18 @@
         "greetme": {
             "usage": "if you want me to greet you when entering 'Anime Watching Team'",
             "description": "Plays a Tuturu! whenever you enter 'Anime Watching Team'",
-            "role": {
-                "name": "tuturu",
-                "color": [148, 174, 192],
-                "permissions": []
-            },
-            "emojiID": "466107601965547520",
-            "confirmResponse": "Yeah I'll greet you...for a Dk. Pepper!",
-            "successResponse": "It's a pinky promise!",
-            "tooSlowResponse": "Too slow!",
-            "alreadyHasRoleResponse": "Don't I already greet you?"
+            "params": {
+                "role": {
+                    "name": "tuturu",
+                    "color": [148, 174, 192],
+                    "permissions": []
+                },
+                "emojiID": "466107601965547520",
+                "confirmResponse": "Yeah I'll greet you...for a Dk. Pepper!",
+                "successResponse": "It's a pinky promise!",
+                "tooSlowResponse": "Too slow!",
+                "alreadyHasRoleResponse": "Don't I already greet you?"
+            }
         },
         "tuturu": {
             "usage": "to greet someone",
