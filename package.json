@@ -29,7 +29,7 @@
     "homepage": "https://github.com/MistaBibi/Steins-Gate-Discord-Bot#readme",
     "dependencies": {
         "discord.js": "^12.5.1",
-        "@discordjs/opus": "^0.4.0"
+        "@discordjs/opus": "^0.8.0"
     },
     "optionalDependencies": {
         "bufferutil": "^4.0.3",
